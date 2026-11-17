@@ -1,0 +1,117 @@
+<section class="publicar-section">
+  <div class="container">
+    <div class="publicar-banner">
+      <img src="https://i.pinimg.com/736x/3c/1b/d2/3c1bd2b880ca82fa261789fe8cfda655.jpg" alt="Referencia terreno" referrerpolicy="no-referrer" loading="lazy">
+      <img src="https://i.pinimg.com/1200x/4e/df/24/4edf24ac81bf22e99c4169307685bfcb.jpg" alt="Referencia terreno" referrerpolicy="no-referrer" loading="lazy">
+    </div>
+    <div class="publicar-card">
+      <h2>Publicar Terreno</h2>
+      
+      <div *ngIf="exito" class="alerta-exito">
+        ✅ Lote publicado exitosamente
+      </div>
+      
+      <div *ngIf="error" class="alerta-error">
+        ❌ {{ error }}
+      </div>
+      
+      <div *ngIf="!exito && !error" class="form-publicar">
+        <form #loteForm="ngForm" (ngSubmit)="onSubmit(loteForm)">
+          <div class="form-row">
+            <div class="form-group-half">
+              <label>Título <span class-req>*</span></label>
+              <input type="text" ngModel required name="titulo" placeholder="Ej: Lote Residencial Tiquipaya">
+            </div>
+            <div class="form-group-half">
+              <label>Zona <span class-req>*</span></label>
+              <select ngModel required name="zona_id">
+                <option value="">Seleccione zona</option>
+                <option value="1">Tiquipaya - Linde</option>
+                <option value="2">Cala Cala / Queru Queru</option>
+                <option value="3">Sacaba - Quintanilla</option>
+                <option value="4">Quillacollo - El Paso</option>
+                <option value="5">Zona Sur - Tamborada</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group-full">
+              <label>Dirección <span class-req>*</span></label>
+              <input type="text" ngModel required name="direccion" placeholder="Ej: Av. Principal Tiquipaya #123">
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group-quarter">
+              <label>Superficie (m²) <span class-req>*</span></label>
+              <input type="number" ngModel required name="superficie_m2" min="1" placeholder="500">
+            </div>
+            <div class="form-group-quarter">
+              <label>Frente (m) <span class-req>*</span></label>
+              <input type="number" ngModel required name="frente_m" min="1" placeholder="20">
+            </div>
+            <div class="form-group-quarter">
+              <label>Fondo (m) <span class-req>*</span></label>
+              <input type="number" ngModel required name="fondo_m" min="1" placeholder="25">
+            </div>
+            <div class="form-group-quarter">
+              <label>Precio publicado (USD) <span class-req>*</span></label>
+              <input type="number" ngModel required name="precio_publicado_usd" min="1" placeholder="75000">
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group-half">
+              <label>Servicios básicos</label>
+              <select ngModel name="servicios_basicos">
+                <option value="1">Sí</option>
+                <option value="0">No</option>
+              </select>
+            </div>
+            <div class="form-group-half">
+              <label>Vía asfaltada</label>
+              <select ngModel name="via_asfaltada">
+                <option value="1">Sí</option>
+                <option value="0">No</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group-half">
+              <label>Folio Real</label>
+              <select ngModel name="folio_real">
+                <option value="1">Sí</option>
+                <option value="0">No</option>
+              </select>
+            </div>
+            <div class="form-group-half">
+              <label>Propietario</label>
+              <input type="text" ngModel name="propietario" placeholder="Juan Pérez">
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group-full">
+              <label>Teléfono de contacto <span class-req>*</span></label>
+              <input type="tel" ngModel required name="telefono_contacto" placeholder="+591 44123456">
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group-full">
+              <label>Imagen (URL) <span class-req>*</span></label>
+              <input type="url" ngModel required name="imagen_url" placeholder="https://images.pexels.com/...">
+            </div>
+          </div>
+          
+          <button type="submit" class="btn-primary-full width-100" disabled="loading">
+            <span *ngIf="!loading">Publicar Lote</span>
+            <span *ngIf="loading">Publicando...</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

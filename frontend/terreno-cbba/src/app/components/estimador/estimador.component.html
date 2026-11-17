@@ -1,0 +1,119 @@
+<section class="estimador-section">
+  <div class="container">
+    <div class="estimador-banner">
+      <img src="https://i.pinimg.com/1200x/3f/42/63/3f4263a47755692d72a8b996851b5470.jpg" alt="Referencia terreno" referrerpolicy="no-referrer" loading="lazy">
+      <img src="https://i.pinimg.com/1200x/28/6a/d0/286ad0208f5f3c2800f92cb9668fbde8.jpg" alt="Referencia terreno" referrerpolicy="no-referrer" loading="lazy">
+    </div>
+    <div class="estimador-row">
+      <div class="estimador-col-form">
+        <h2>Estimador Algorítmico de Precios</h2>
+        
+        <form (ngSubmit)="estimarPrecio()" class="form-estimador">
+          <div class="form-group">
+            <label for="zona">Zona <span class="req">*</span></label>
+            <select id="zona" [(ngModel)]="zona_id" name="zona_id" required>
+              <option value="">Seleccione una zona</option>
+              <option *ngFor="let z of zonas" [value]="z.id">
+                {{z.nombre}} - ${{z.precio_m2_usd}}/m²
+              </option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="superficie">Superficie (m²) <span class="req">*</span></label>
+            <input type="number" id="superficie" [(ngModel)]="superficie_m2" name="superficie_m2" required min="1">
+          </div>
+          
+          <div class="form-group">
+            <label for="frente">Frente (m) <span class="req">*</span></label>
+            <input type="number" id="frente" [(ngModel)]="frente_m" name="frente_m" required min="1">
+          </div>
+          
+          <div class="form-group">
+            <label for="fondo">Fondo (m) <span class="req">*</span></label>
+            <input type="number" id="fondo" [(ngModel)]="fondo_m" name="fondo_m" required min="1">
+          </div>
+          
+          <div class="form-group">
+            <label>Servicios básicos</label>
+            <label class="checkbox-option">
+              <input type="checkbox" [(ngModel)]="servicios_basicos" name="servicios_basicos">
+              Sí ($C_servicios = 1.10)
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" [ngModel]="!servicios_basicos" name="no_servicios">
+              No ($C_servicios = 0.90)
+            </label>
+          </div>
+          
+          <div class="form-group">
+            <label>Vía asfaltada</label>
+            <label class="checkbox-option">
+              <input type="checkbox" [(ngModel)]="via_asfaltada" name="via_asfaltada">
+              Sí ($C_vía = 1.08)
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" [ngModel]="!via_asfaltada" name="no_via">
+              No ($C_vía = 0.95)
+            </label>
+          </div>
+          
+          <div class="form-group">
+            <label>Folio Real</label>
+            <label class="checkbox-option">
+              <input type="checkbox" [(ngModel)]="folio_real" name="folio_real">
+              Sí ($C_legal = 1.05)
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" [ngModel]="!folio_real" name="no_folio">
+              No ($C_legal = 0.85)
+            </label>
+          </div>
+          
+          <button type="submit" class="btn-primary-full width-100">
+            Calcular Precio Estimado
+          </button>
+        </form>
+      </div>
+
+      <div class="estimador-col-results" *ngIf="resultado">
+        <h2>Ficha Técnica de Tasación</h2>
+        
+        <div class="ficha-dato">
+          <span class="ficha-etiqueta">Precio base por m² (Zona)</span>
+          <span class="ficha-valor">${{ resultado.precio_m2_base }}</span>
+        </div>
+        
+        <div class="ficha-dato">
+          <span class="ficha-etiqueta">Coeficiente Servicios básicos</span>
+          <span class="ficha-valor">{{ resultado.coeficientes.c_servicios === 1.10 ? '1.10 (tiene servicios)' : '0.90 (no tiene servicios)' }}</span>
+        </div>
+        
+        <div class="ficha-dato">
+          <span class="ficha-etiqueta">Coeficiente Vía</span>
+          <span class="ficha-valor">{{ resultado.coeficientes.c_via === 1.08 ? '1.08 (asfaltada)' : '0.95 (tierra)' }}</span>
+        </div>
+        
+        <div class="ficha-dato">
+          <span class="ficha-etiqueta">Coeficiente Legal (Folio Real)</span>
+          <span class="ficha-valor">{{ resultado.coeficientes.c_legal === 1.05 ? '1.05 (folio real)' : '0.85 (en trámite)' }}</span>
+        </div>
+        
+        <div class="ficha-dato">
+          <span class="ficha-etiqueta">Coeficiente Forma (Frente ≥ 10m)</span>
+          <span class="ficha-valor">{{ resultado.coeficientes.c_forma === 1.03 ? '1.03 (frente ≥ 10m)' : '0.97 (frente < 10m)' }}</span>
+        </div>
+        
+        <div class="ficha-resultado-grande">
+          <span class="ficha-etiqueta">Precio ajustado por m²</span>
+          <span class="ficha-valor">${{ resultado.precio_m2_ajustado }}</span>
+        </div>
+        
+        <div class="ficha-resultado-grande">
+          <span class="ficha-etiqueta">Valor Estimado Total</span>
+          <span class="ficha-valor">${{ resultado.valor_estimado_total_usd }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

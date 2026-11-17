@@ -1,0 +1,28 @@
+<div class="chatbot-float" (click)="toggleChat()" *ngIf="!mostrando">
+  <button class="chatbot-btn">
+    ASISTENTE IA
+  </button>
+</div>
+
+<div class="chatbot-window" *ngIf="mostrando">
+  <div class="chatbot-header">
+    <span>Asistente IA - Mercado Inmobiliario</span>
+    <button class="chatbot-close" (click)="toggleChat()">×</button>
+  </div>
+  
+  <div class="chatbot-messages" style="height: 300px; overflow-y: auto; border: 1px solid #E0E0E0; border-radius: 0; background: #FFFFFF; padding: 16px; font-family: 'Inter', sans-serif; font-size: 13px; color: #1A1A1A;">
+    <div *ngFor="let msg of respuestas" [ngStyle]="{'margin-bottom': '12px'}">
+      <strong *ngIf="msg.tipo === 'usuario'">Tú:</strong> {{ msg.texto }}
+      <strong *ngIf="msg.tipo === 'ia'">IA:</strong> {{ msg.texto }}
+    </div>
+  </div>
+  
+  <div class="chatbot-footer" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #E0E0E0;">
+    <input type="text" [(ngModel)]="mensaje" (keyup.enter)="enviarMensaje()" 
+           style="width: 70%; padding: 8px; border: 1px solid #E0E0E0; border-radius: 0; font-family: 'Inter', sans-serif; font-size: 13px;"
+           placeholder="Escribe tu consulta sobre lotes en Cochabamba...">
+    <button class="btn-chat-enviar" (click)="enviarMensaje()" style="width: 25%; padding: 8px; background: #0F766E; color: #FFFFFF; border: none; border-radius: 0; font-family: 'Inter', sans-serif; font-size: 13px; cursor: pointer;">
+      Enviar
+    </button>
+  </div>
+</div>

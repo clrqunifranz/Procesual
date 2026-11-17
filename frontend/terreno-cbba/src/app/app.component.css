@@ -1,0 +1,13 @@
+* {
+  box-sizing: border-box;
+}
+
+:host {
+  display: block;
+}
+
+.navbar-contenedor {
+  width: 100%;
+  max-width: 100%;
+  padding: 0 24px;
+}

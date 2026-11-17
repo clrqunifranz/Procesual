@@ -1,0 +1,25 @@
+<div class="lote-card" (click)="onVerDetalle()">
+  <div class="lote-imagen-wrapper">
+    <img [src]="lote.imagen_url || 'https://i.pinimg.com/1200x/9a/4e/8f/9a4e8f17b5b510a4b2891837c8f57665.jpg'" [alt]="lote.titulo" referrerpolicy="no-referrer" loading="lazy" />
+  </div>
+  <div class="lote-contenido">
+    <div class="lote-titulo">{{ lote.titulo }}</div>
+    <div class="lote-direccion">{{ lote.direccion }}</div>
+    
+    <div class="lote-dimensiones">
+      {{ lote.superficie_m2 }} m² | {{ lote.frente_m }} × {{ lote.fondo_m }}
+    </div>
+    
+    <div class="lote-etiquetas">
+      <span class="lote-etiqueta">{{ lote.zona_nombre }}</span>
+      <span class="lote-etiqueta" *ngIf="lote.servicios_basicos">SERVICIOS</span>
+      <span class="lote-etiqueta" *ngIf="lote.via_asfaltada">ASFALTO</span>
+      <span class="lote-etiqueta" *ngIf="lote.folio_real">FOLIO REAL</span>
+    </div>
+    
+    <div class="lote-comparacion">
+      <span class="precio-publicado">${{ lote.precio_publicado_usd || 0 }}</span>
+      <span class="precio-referencia">Ref: ${{ lote.precio_m2_usd || 0 }}/m²</span>
+    </div>
+  </div>
+</div>

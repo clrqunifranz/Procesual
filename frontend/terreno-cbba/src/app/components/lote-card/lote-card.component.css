@@ -1,0 +1,100 @@
+.lote-card {
+  background: #FFFFFF;
+  border: 1px solid #E0E0E0;
+  border-radius: 0;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.lote-card:hover {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.lote-img {
+  width: 100%;
+  height: 180px;
+  background: #F5F5F0;
+  object-fit: cover;
+}
+
+.lote-contenido {
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.lote-meta {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #5C5C5C;
+}
+
+.lote-meta span {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.lote-titulo {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin-bottom: 8px;
+}
+
+.lote-direccion {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: #5C5C5C;
+  margin-bottom: 12px;
+}
+
+.lote-dimensiones {
+  font-family: 'Courier Prime', monospace;
+  font-size: 12px;
+  color: #0F766E;
+  margin: 8px 0;
+}
+
+.lote-etiquetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+}
+
+.lote-etiqueta {
+  padding: 3px 6px;
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  background: #F5F5F0;
+  color: #1A1A1A;
+  border: 1px solid #E0E0E0;
+  border-radius: 0;
+}
+
+.lote-comparacion {
+  margin-top: 8px;
+  font-size: 12px;
+}
+
+.lote-comparacion .precio-publicado {
+  color: #0F766E;
+  font-weight: bold;
+}
+
+.lote-comparacion .precio-referencia {
+  color: #5C5C5C;
+  text-decoration: line-through;
+  margin-left: 4px;
+}
+
+.lote-comparacion .delta {
+  color: #0F766E;
+  font-weight: bold;
+  margin-left: 4px;
+}
